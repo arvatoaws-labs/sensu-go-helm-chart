@@ -17,7 +17,9 @@ spec:
       containers:
       - name: sensu
         image: sensu/sensu:latest
-        command: 'sensu-backend start'
+        command:
+        - sensu-backend
+        - start
         ports:
         - containerPort: 2380
           name: backend-interconnect

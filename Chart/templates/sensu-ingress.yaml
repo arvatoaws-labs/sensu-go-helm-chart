@@ -25,8 +25,8 @@ spec:
       http:
         paths:
           - backend:
-            serviceName: ssl-redirect
-            servicePort: use-annotation
+              serviceName: ssl-redirect
+              servicePort: use-annotation
           - backend:
               serviceName: sensu
               servicePort: sensu-api

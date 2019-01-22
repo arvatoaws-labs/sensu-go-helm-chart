@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: sensu
+  namespace: monitoring
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+spec:
+  rules:
+    - host: sensu.dev.aws.csservice.de
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: sensu
+              servicePort: dashboard
+    - host: sensu-api.dev.aws.csservice.de
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: sensu
+              servicePort: sensu-api
+    - host: sensu-agent-api.dev.aws.csservice.de
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: sensu
+              servicePort: agent-api

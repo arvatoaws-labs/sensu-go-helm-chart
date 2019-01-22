@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sensu
+  namespace: monitoring
+spec:
+  serviceName: sensu
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sensu
+  template:
+    metadata:
+      labels:
+        app: sensu
+    spec:
+      containers:
+      - name: sensu
+        image: sensu/sensu:latest
+        command: 'sensu-backend start'
+        ports:
+        - containerPort: 2380
+          name: backend-interconnect
+        - containerPort: 3000
+          name: dashboard
+        - containerPort: 8080
+          name: sensu-api
+        - containerPort: 8081
+          name: agent-api
+        volumeMounts:
+        - name: state
+          mountPath: /var/lib/sensu
+  volumeClaimTemplates:
+  - metadata:
+      name: state
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 10Gi

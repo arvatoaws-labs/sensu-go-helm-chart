@@ -11,21 +11,18 @@ spec:
     - host: sensu.dev.aws.csservice.de
       http:
         paths:
-          - path: /
-            backend:
+          - backend:
               serviceName: sensu
               servicePort: dashboard
     - host: sensu-api.dev.aws.csservice.de
       http:
         paths:
-          - path: /
-            backend:
+          - backend:
               serviceName: sensu
               servicePort: sensu-api
     - host: sensu-agent-api.dev.aws.csservice.de
       http:
         paths:
-          - path: /
-            backend:
+          - backend:
               serviceName: sensu
               servicePort: agent-api

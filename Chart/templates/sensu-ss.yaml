@@ -22,7 +22,7 @@ spec:
         - start
         ports:
         - containerPort: 2380
-          name: backend-interconnect
+          name: bk-intercon
         - containerPort: 3000
           name: dashboard
         - containerPort: 8080

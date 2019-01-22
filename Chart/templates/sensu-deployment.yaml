@@ -1,11 +1,11 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: sensu
   namespace: monitoring
 spec:
   serviceName: sensu
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: sensu
@@ -20,6 +20,8 @@ spec:
         command:
         - sensu-backend
         - start
+        - --no-embed-etcd
+        - --etcd-advertise-client-urls=http://sensu-etcd-client.monitoring.svc.cluster.local:2379
         ports:
         - containerPort: 2380
           name: bk-intercon
@@ -29,14 +31,14 @@ spec:
           name: sensu-api
         - containerPort: 8081
           name: agent-api
-        volumeMounts:
-        - name: state
-          mountPath: /var/lib/sensu
-  volumeClaimTemplates:
-  - metadata:
-      name: state
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: 10Gi
+  #       volumeMounts:
+  #       - name: state
+  #         mountPath: /var/lib/sensu
+  # volumeClaimTemplates:
+  # - metadata:
+  #     name: state
+  #   spec:
+  #     accessModes: [ "ReadWriteOnce" ]
+  #     resources:
+  #       requests:
+  #         storage: 10Gi

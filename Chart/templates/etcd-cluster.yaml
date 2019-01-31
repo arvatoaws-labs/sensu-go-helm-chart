@@ -2,7 +2,7 @@ apiVersion: "etcd.database.coreos.com/v1beta2"
 kind: "EtcdCluster"
 metadata:
   name: sensu-etcd
-  namespace: monitoring
+  namespace: {{ .Values.namespace }}
 spec:
-  size: 5
-  version: "3.3.11"
+  size: {{ .Values.etcd.size }}
+  version: {{ .Values.etcd.version }}

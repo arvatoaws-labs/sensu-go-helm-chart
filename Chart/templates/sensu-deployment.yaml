@@ -2,10 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sensu
-  namespace: monitoring
+  namespace: {{ .Values.namespace }}
 spec:
   serviceName: sensu
-  replicas: 3
+  # replicas: 3
   selector:
     matchLabels:
       app: sensu
@@ -21,7 +21,7 @@ spec:
         - sensu-backend
         - start
         - --no-embed-etcd
-        - --etcd-advertise-client-urls=http://sensu-etcd-client.monitoring.svc.cluster.local:2379
+        - --etcd-advertise-client-urls=http://sensu-etcd-client.{{ .Values.namespace }}.svc.cluster.local:2379
         ports:
         - containerPort: 2380
           name: bk-intercon

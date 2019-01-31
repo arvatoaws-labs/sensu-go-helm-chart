@@ -3,9 +3,9 @@ kind: Ingress
 metadata:
   name: sensu
   namespace: {{ .Values.namespace }}
-{{- with .Values.ingress.annotations }}
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: sensu.{{ .Values.ingress.dns-zone }},sensu-api.{{ .Values.ingress.dns-zone }},sensu-agent-api.{{ .Values.ingress.dns-zone }}
+    external-dns.alpha.kubernetes.io/hostname: "sensu.{{ .Values.ingress.dns-zone }},sensu-api.{{ .Values.ingress.dns-zone }},sensu-agent-api.{{ .Values.ingress.dns-zone }}"
+{{- with .Values.ingress.annotations }}
 {{ toYaml . | indent 4 }}
 {{- end }}
 spec:

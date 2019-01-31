@@ -4,7 +4,7 @@ metadata:
   name: sensu
   namespace: {{ .Values.namespace }}
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: "sensu.{{ .Values.ingress.dns-zone }},sensu-api.{{ .Values.ingress.dns-zone }},sensu-agent-api.{{ .Values.ingress.dns-zone }}"
+    external-dns.alpha.kubernetes.io/hostname: "sensu.{{ .Values.ingress.dnszone }},sensu-api.{{ .Values.ingress.dnszone }},sensu-agent-api.{{ .Values.ingress.dnszone }}"
 {{- with .Values.ingress.annotations }}
 {{ toYaml . | indent 4 }}
 {{- end }}
@@ -12,23 +12,23 @@ spec:
   tls:
   - secretName: sensu-tls
     hosts:
-    - sensu.{{ .Values.ingress.dns-zone }}
-    - sensu-api.{{ .Values.ingress.dns-zone }}
-    - sensu-agent-api.{{ .Values.ingress.dns-zone }}
+    - sensu.{{ .Values.ingress.dnszone }}
+    - sensu-api.{{ .Values.ingress.dnszone }}
+    - sensu-agent-api.{{ .Values.ingress.dnszone }}
   rules:
-    - host: sensu.{{ .Values.ingress.dns-zone }}
+    - host: sensu.{{ .Values.ingress.dnszone }}
       http:
         paths:
           - backend:
               serviceName: sensu
               servicePort: dashboard
-    - host: sensu-api.{{ .Values.ingress.dns-zone }}
+    - host: sensu-api.{{ .Values.ingress.dnszone }}
       http:
         paths:
           - backend:
               serviceName: sensu
               servicePort: sensu-api
-    - host: sensu-agent-api.{{ .Values.ingress.dns-zone }}
+    - host: sensu-agent-api.{{ .Values.ingress.dnszone }}
       http:
         paths:
           - backend:

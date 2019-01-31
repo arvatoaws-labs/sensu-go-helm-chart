@@ -8,6 +8,6 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: sensu
-  minReplicas: {{ .Values.hpa.min }}
-  maxReplicas: {{ .Values.hpa.max }}
+  minReplicas: {{ .Values.hpa.minReplicas }}
+  maxReplicas: {{ .Values.hpa.maxReplicas }}
   targetCPUUtilizationPercentage: 70

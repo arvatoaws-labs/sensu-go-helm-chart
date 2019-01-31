@@ -9,6 +9,6 @@ etcd:
   version: "3.3.11"
 namespace: monitoring
 hpa:
-  min: 2
-  max: 10
+  minReplicas: 2
+  maxReplicas: 10
   

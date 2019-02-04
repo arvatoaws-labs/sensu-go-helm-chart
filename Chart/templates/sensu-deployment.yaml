@@ -31,6 +31,13 @@ spec:
           name: sensu-api
         - containerPort: 8081
           name: agent-api
+        resources:
+          limits:
+            cpu: 15m
+            memory: 60Mi
+          requests:
+            cpu: 5m
+            memory: 15Mi
   #       volumeMounts:
   #       - name: state
   #         mountPath: /var/lib/sensu

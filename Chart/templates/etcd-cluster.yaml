@@ -3,8 +3,9 @@ kind: "EtcdCluster"
 metadata:
   name: sensu-etcd
   namespace: {{ .Values.namespace }}
-  labels: 
-    svcmon: sensu
 spec:
+  metadata:
+    labels:
+      svcmon: sensu
   size: {{ .Values.etcd.size }}
   version: {{ .Values.etcd.version }}

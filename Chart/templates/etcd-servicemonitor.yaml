@@ -4,6 +4,7 @@ metadata:
   labels:
     app: etcd
     etcd_cluster: sensu-etcd
+    release: prometheus
   name: etcd
   namespace: {{ .Values.namespace }}
 spec:

@@ -16,5 +16,5 @@ spec:
     - {{ .Values.namespace }}
   selector:
     matchLabels:
-      etcd_cluster: sensu-etcd
+      svcmon: sensu
 

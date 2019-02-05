@@ -6,7 +6,7 @@ metadata:
     etcd_cluster: sensu-etcd
     svcmon: sensu-etcd
   name: sensu-etcd-monitoring
-  namespace: monitoring
+  namespace: {{ .Values.namespace }}
 spec:
   ports:
   - name: client

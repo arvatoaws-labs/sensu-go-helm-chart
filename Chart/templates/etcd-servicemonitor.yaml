@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: etcd
+    etcd_cluster: sensu-etcd
+  name: etcd
+  namespace: {{ .Values.namespace }}
+spec:
+  endpoints:
+  - path: /metrics
+    port: client
+  namespaceSelector:
+    matchNames:
+    - {{ .Values.namespace }}
+  selector:
+    matchLabels:
+      app: etcd
+      etcd_cluster: sensu-etcd
+

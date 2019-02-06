@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: sensu
-        image: sensu/sensu:latest
+        image: sensu/sensu:5.1.1
         command:
         - sensu-backend
         - start
